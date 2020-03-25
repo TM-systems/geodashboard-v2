@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Dashboard - Space4Good</title>
+  <title>Arsari - Fire Detection - Space4Good</title>
   <!--favicon-->
   <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"/>
   <!-- Vector CSS -->
@@ -41,6 +41,7 @@
   background-color: #f8f7f7;
   font-weight:600;
 }
+
 </style>
 </head>
 
@@ -69,9 +70,9 @@
           <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span><i class="fa fa-angle-left pull-right"></i>
         </a>
 		<ul class="sidebar-submenu">
-		  <li class="active"><a class="active" href="index.html"><i class="zmdi zmdi-dot-circle-alt"></i> Geo Points</a></li>
+		  <li class="active"><a class="active" href="index.html"><i class="zmdi zmdi-dot-circle-alt"></i> Arsari - Fire Detection</a></li>
 		  
-		  <li><a href="geo_vector.html"><i class="zmdi zmdi-shape"></i> Geo Vector</a></li>
+		  <li><a href="geo_vector.html"><i class="zmdi zmdi-shape"></i> Rotterdam Roof Analysis</a></li>
 		</ul>
       </li>
   
@@ -184,7 +185,7 @@
 	<div class="row">
      <div class="col-12 col-lg-12 col-xl-12">
 	    <div class="card">
-		 <div class="card-header">Arsari - Geo Data
+		 <div class="card-header">Arsari - Fire Detection
 		 
 		
 		          
@@ -260,7 +261,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoicmFpc21hbmFzaXlhNzg2IiwiYSI6ImNrN3hreWVvbTAwb
 var url = 'https://gist.githubusercontent.com/shravan91/2ca522c47850b2d0f325450d00cb1882/raw/3cc9c13e7367b37ac22d239a2a3b1e4649741083/merged_fire_indonesia.geojson';
 
 var map = L.mapbox.map('map')
-  .setView([-2.483,117.965], 7)
+  .setView([-2.483000, 117.965000], 7)
   .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
 var myLayer = L.mapbox.featureLayer().addTo(map);
 
@@ -298,9 +299,9 @@ function load() {
    myLayer.on('layeradd', function(e) {
     var marker = e.layer,
     feature = marker.feature;
-  //marker.setIcon(L.icon(feature.properties.icon));
-  
-    var content = '<table ><tbody><tr><td colspan="2">Marker '+i+'</td><tr><tr><td>Latitude</td><td>'+feature.properties.LATITUDE + '</td></tr><tr><td>Longitude</td><td>' + feature.properties.LONGITUDE + '</td></tr><tr><td>Brightness</td><td>' + feature.properties.BRIGHTNESS + '</td></tr><tr><td>ACQ_DATE</td><td>' + feature.properties.ACQ_DATE + '</td></tr><tr><td>ACQ_TIME</td><td>' + feature.properties.ACQ_TIME + '</td></tr><tr><td>CONFIDENCE</td><td>' + feature.properties.CONFIDENCE + '</td></tr></tbody></table>';
+    //marker.setIcon(L.icon('assets/images/fire.svg'));
+	
+    var content = '<table ><tbody><tr><td colspan="2">Detected Fire '+i+'</td><tr><tr><td>Latitude</td><td>'+feature.properties.LATITUDE + '</td></tr><tr><td>Longitude</td><td>' + feature.properties.LONGITUDE + '</td></tr><tr><td>Brightness</td><td>' + feature.properties.BRIGHTNESS + '</td></tr><tr><td>ACQ_DATE</td><td>' + feature.properties.ACQ_DATE + '</td></tr><tr><td>ACQ_TIME</td><td>' + feature.properties.ACQ_TIME + '</td></tr><tr><td>CONFIDENCE</td><td>' + feature.properties.CONFIDENCE + '</td></tr></tbody></table>';
      marker.bindPopup(content);
 	 i++;
 	});
@@ -313,12 +314,26 @@ function load() {
 		
 	 }).addTo(map); */
 	 
+/*	 var features = L.geoJson(geojson, { 
+  pointToLayer: function(feature, latlng){
+    return new L.marker(latlng, {
+      icon: L.mapbox.marker.icon({
+        'marker-color': '#00f',
+        'marker-symbol': 'star'
+        })
+    })
+  }
+ }).addTo(map); */
+ 
+	 
 	 setTimeout(function(){
 	   $('.style_layer').show();
 	}, 2000);
 	 
-		
-
+    ///////////////////////////////
+	
+	//////////////////////////////
+	
 
     }
   });
